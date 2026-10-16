@@ -1,7 +1,6 @@
-if(process.env.NODE_ENV != "production"){
+if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
-require('dotenv').config();
 console.log(process.env.SECRET);
 const express = require("express");
 const app = express();
@@ -11,7 +10,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
-const MangoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -49,8 +48,8 @@ const store = MongoStore.create({
    touchAfter: 24 * 3600,
 });
 
-store.on("error" , () => {
-    console.log("ERROR in MANGO SESSION STORE" , err);
+store.on("error", (err) => {
+    console.log("ERROR in MONGO SESSION STORE", err);
 });
 
 const sessionOption = {
